@@ -9,6 +9,10 @@ class MainActivityViewModel : ViewModel() {
 
     private lateinit var timer: CountDownTimer
 
+    private val _finished = MutableLiveData<Boolean>()
+    val finished: LiveData<Boolean>
+        get() = _finished
+
     private val _seconds = MutableLiveData<Int>()
     val seconds: LiveData<Int>
         get() = _seconds
@@ -21,7 +25,7 @@ class MainActivityViewModel : ViewModel() {
             }
 
             override fun onFinish() {
-                TODO("Not yet implemented")
+                _finished.value = true
             }
 
         }.start()

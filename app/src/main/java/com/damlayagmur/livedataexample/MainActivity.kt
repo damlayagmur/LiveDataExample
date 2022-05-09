@@ -3,6 +3,7 @@ package com.damlayagmur.livedataexample
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.damlayagmur.livedataexample.viewmodel.MainActivityViewModel
@@ -20,6 +21,12 @@ class MainActivity : AppCompatActivity() {
         viewModel.startTimer()
         viewModel.seconds.observe(this, Observer {
             numberText.text = it.toString()
+        })
+
+        viewModel.finished.observe(this, Observer {
+            if (it) {
+                Toast.makeText(this, "Finished!", Toast.LENGTH_LONG).show()
+            }
         })
     }
 
