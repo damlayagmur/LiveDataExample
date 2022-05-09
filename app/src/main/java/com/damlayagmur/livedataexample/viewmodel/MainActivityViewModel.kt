@@ -17,8 +17,11 @@ class MainActivityViewModel : ViewModel() {
     val seconds: LiveData<Int>
         get() = _seconds
 
+
+    val timerValue = MutableLiveData<Long>()
+
     fun startTimer() {
-        timer = object : CountDownTimer(10000, 1000) {
+        timer = object : CountDownTimer(timerValue.value!!.toLong(), 1000) {
             override fun onTick(p0: Long) {
                 val timeLeft = p0 / 1000
                 _seconds.value = timeLeft.toInt()
